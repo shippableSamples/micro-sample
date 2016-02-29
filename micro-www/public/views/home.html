@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="micro-www">
+<head>
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/three-quarters.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="javascripts/home.js"></script>
+  <title>micro-www</title>
+</head>
+
+<body ng-controller="mainCtrl">
+<div class="container">
+  <div class="masthead">
+    <h1 class="text-muted">WWW micro service</h1>
+  </div>
+
+  <div class="jumbotron">
+    <h3>API micro service - Status</h3>
+
+    <div ng-if="apiConnectionStatus.state=='error'">
+      <div class="alert alert-danger text-center">{{apiConnectionStatus.msg}}</div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Response from: {{env.api_url}}</h3>
+        </div>
+        <div class="panel-body">
+          <p>Please check configuration setting: API_URL</p>
+        </div>
+      </div>
+    </div>
+    <div ng-if="apiConnectionStatus.state=='success'">
+      <div class="alert alert-success text-center">{{apiConnectionStatus.msg}}</div>
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Response from: {{env.api_url}}</h3>
+        </div>
+        <div class="panel-body">
+<!--          <p>API Build Number: {{apiBuildnum}}</p>  -->
+
+          <p>API Time: {{apiAccessTime ? apiAccessTime: 'No Time Reported!'}}</p>
+
+          <p>API Message: {{apiMessage}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site footer -->
+  <footer class="footer">
+    <p>&copy; Aye0Aye 2015</p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# language setting
+language: node_js
+
+# version numbers, testing against one version of node
+node_js:
+    - 0.10.33
+
+
+build:
+   ci:
+       - grunt
+   on_success:
+       - cd micro-www && docker build -t manishas/micro-www .
+       - cd ..
+       - cd micro-api && docker build -t manishas/micro-api .
+       - docker tag -f manishas/micro-www:latest manishas/micro-www:tip 
+       - docker tag -f manishas/micro-api:latest manishas/micro-api:tip
+       - docker push manishas/micro-api:tip
+       - docker push manishas/micro-www:tip
+
+integrations:
+    notifications:
+        - integrationName: www_notif
+          type: slack
+          recipients:
+              - www-notifications
+          on_success: always
+          on_failure: always
+
+    hub:
+        - integrationName: manishasDockerHub
+          type: docker
+
+
