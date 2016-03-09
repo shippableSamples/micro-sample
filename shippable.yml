@@ -10,13 +10,13 @@ build:
    ci:
        - grunt
    on_success:
-       - cd micro-www && docker build -t manishas/micro-www .
+       - cd micro-www && docker build -t test/micro-www .
        - cd ..
-       - cd micro-api && docker build -t manishas/micro-api .
-       - docker tag -f manishas/micro-www:latest manishas/micro-www:tip 
-       - docker tag -f manishas/micro-api:latest manishas/micro-api:tip
-       - docker push manishas/micro-api:tip
-       - docker push manishas/micro-www:tip
+       - cd micro-api && docker build -t test/micro-api .
+       - docker tag -f test/micro-www:latest test/micro-www:tip 
+       - docker tag -f test/micro-api:latest test/micro-api:tip
+       - docker push test/micro-api:tip
+       - docker push test/micro-www:tip
 
 integrations:
     notifications:
@@ -28,7 +28,7 @@ integrations:
           on_failure: always
 
     hub:
-        - integrationName: manishasDockerHub
+        - integrationName: kitchenello
           type: docker
 
 
