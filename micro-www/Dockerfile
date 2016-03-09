@@ -1,4 +1,4 @@
-FROM sdemo/micro-image:prod
+FROM aye0aye/micro-image:prod
 
 # this folder must be created in the base images
 ADD . /root/micro-www/
